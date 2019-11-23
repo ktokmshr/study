@@ -1,0 +1,28 @@
+{% extends "template.html" %}
+{% block content %}
+<h1>内容修正</h1>
+<div class="alert alert-primary" role="alert">
+	<form action="/update" method="post">
+		<div class="form-row">
+			<div class="form-group col-7">
+				<label for="todoContent">内容</label>
+				<input id="todoContent" class="form-control" type="text" name="content" value="{{ todo.content }}" required>
+			</div>
+			<div class="form-group col">
+				<label for="status">ステータス</label>
+				<select name="status" id="status" class="form-control">
+					<option value="0" {% if todo.status==0 %} selected="selected"{% endif %}>新規</option>
+					<option value="1" {% if todo.status==1 %} selected="selected"{% endif %}>仕掛中</option>
+					<option value="2" {% if todo.status==2 %} selected="selected"{% endif %}>完了</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="deadline">締め切り</label>
+			<input type="text" class="form-control" name="deadline" id="deadline" value="{{ todo.deadline }}" required>
+		</div>
+		<input type="hidden" name="mod_id" value="{{ mod_id }}">
+		<button type="submit" class="btn btn-success btn-lg">　修正　</submit>
+	</form>
+</div>
+{% endblock %}
