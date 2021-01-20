@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseService {
-  static final _databaseVersion = 1;
+  static final _databaseVersion = 3;
   static final _databaseName = 'todo_app.db';
 
   static final todoItemTableName = 't_todo_item';
@@ -24,21 +24,24 @@ class DatabaseService {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
 
-    var database =
-        await openDatabase(path, version: _databaseVersion, onCreate: initDB);
+    var database = await openDatabase(
+      path,
+      version: _databaseVersion,
+      onCreate: initDB,
+    );
     return database;
   }
 
   void initDB(Database database, int version) async {
     await database.execute('''
-    CREATE TABLE todo_item(
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title TEXT NOT NULL,
-      body TEXT NOT NULL,
-      createdAt TEXT NOT NULL,
-      updatedAt TEXT NOT NULL,
-      isDone TEXT NOT NULL
-    );
+      CREATE TABLE $todoItemTableName(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        body TEXT NOT NULL,
+        createdAt TEXT NOT NULL,
+        updatedAt TEXT NOT NULL,
+        isDone TEXT NOT NULL
+      );
     ''');
   }
 }
