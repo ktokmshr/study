@@ -19,21 +19,25 @@ class TodoItemModel extends ChangeNotifier {
 
   void add(TodoItem todoItem) async {
     await repo.insertItem(todoItem);
+    fetchAll();
     notifyListeners();
   }
 
   void update(TodoItem todoItem) async {
     await repo.updateItem(todoItem);
+    fetchAll();
     notifyListeners();
   }
 
   void deleteById(TodoItem todoItem) async {
     await repo.deleteItemById(todoItem.id);
+    fetchAll();
     notifyListeners();
   }
 
   void deleteAll() async {
     await repo.deleteAllItems();
+    fetchAll();
     notifyListeners();
   }
 }

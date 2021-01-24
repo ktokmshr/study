@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:path_provider/path_provider.dart';
 import 'model/todo_item_model.dart';
 import 'entity/todo_item.dart';
 import 'view/AddTodo.dart';
@@ -24,19 +23,20 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatelessWidget {
+  final data = TodoItemModel();
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<TodoItemModel>(
-        create: (context) => TodoItemModel()..fetchAll(),
+    return ChangeNotifierProvider<TodoItemModel>.value(
+        value: data,
         child: Scaffold(
             appBar: AppBar(title: Text('TODOアプリ（Provider+sqflite学習用）')),
             body: Container(
                 padding: EdgeInsets.all(16.0),
                 child:
                     Consumer<TodoItemModel>(builder: (context, value, child) {
-                  final todoList = value.allItemList;
+                  final TodoItemModel todoItemModel = Provider.of<TodoItemModel>(context);
                   return ListView(
-                    children: todoList.map((todo)=> _todoCard(todo)).toList(),
+                    children: todoItemModel.allItemList.map((todo) => _todoCard(todo)).toList(),
                   );
                 })),
             floatingActionButton: FloatingActionButton(
@@ -52,30 +52,30 @@ class MainPage extends StatelessWidget {
 
   Widget _todoCard(TodoItem todo) {
     return Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.album),
-              title: Text(todo.title),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  child: const Text('詳細'),
-                  onPressed: () {/* ... */},
-                ),
-                const SizedBox(width: 8),
-                TextButton(
-                  child: const Text('削除'),
-                  onPressed: () {/* ... */},
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ],
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.album),
+            title: Text(todo.title),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              TextButton(
+                child: const Text('詳細'),
+                onPressed: () {/* ... */},
+              ),
+              const SizedBox(width: 8),
+              TextButton(
+                child: const Text('削除'),
+                onPressed: () {/* ... */},
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

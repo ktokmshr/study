@@ -7,6 +7,9 @@ class TodoItemDao {
 
   Future<int> create(TodoItem todoItem) async {
     final db = await dbProvider.database;
+    DateTime _date = new DateTime.now();
+    todoItem.createdAt = _date;
+    todoItem.updatedAt = _date;
     var result = db.insert(tableName, todoItem.toMap());
     return result;
   }
@@ -22,6 +25,8 @@ class TodoItemDao {
 
   Future<int> update(TodoItem todoItem) async {
     final db = await dbProvider.database;
+    DateTime _date = new DateTime.now();
+    todoItem.updatedAt = _date;
     var result = await db.update(tableName, todoItem.toMap(),
         where: "id = ?", whereArgs: [todoItem.id]);
     return result;
@@ -39,4 +44,5 @@ class TodoItemDao {
       tableName,
     );
     return result;
-  }}
+  }
+}
