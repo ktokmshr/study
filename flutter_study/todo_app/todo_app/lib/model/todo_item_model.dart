@@ -13,31 +13,31 @@ class TodoItemModel extends ChangeNotifier {
   }
 
   void fetchAll() async {
-    _allItemList = await repo.getAllItems();
+    this._allItemList = await repo.getAllItems();
     notifyListeners();
+  }
+
+  TodoItem getTodoById(String id) {
+    return this._allItemList.firstWhere((todo) => todo.id.toString() == id);
   }
 
   void add(TodoItem todoItem) async {
     await repo.insertItem(todoItem);
-    fetchAll();
-    notifyListeners();
+    this.fetchAll();
   }
 
   void update(TodoItem todoItem) async {
     await repo.updateItem(todoItem);
-    fetchAll();
-    notifyListeners();
+    this.fetchAll();
   }
 
   void deleteById(TodoItem todoItem) async {
     await repo.deleteItemById(todoItem.id);
-    fetchAll();
-    notifyListeners();
+    this.fetchAll();
   }
 
   void deleteAll() async {
     await repo.deleteAllItems();
-    fetchAll();
-    notifyListeners();
+    this.fetchAll();
   }
 }

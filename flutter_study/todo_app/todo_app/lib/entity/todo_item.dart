@@ -17,12 +17,14 @@ class TodoItem {
         isDone: (data['isDone'] == '1') ? true : false,
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() {
+    return {
         'id': this.id,
         'title': this.title,
         'body': this.body,
         'createdAt': this.createdAt.toUtc().toIso8601String(),
         'updatedAt': this.updatedAt.toUtc().toIso8601String(),
         'isDone': (this.isDone) ? 1 : 0,
-      };
+    };
+  }
 }
