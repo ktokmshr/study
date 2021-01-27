@@ -35,7 +35,6 @@ class _TodoData {
   String title = '';
   String body = '';
   DateTime createdAt;
-  bool isDone = false;
 }
 
 class TodoFormState extends State<TodoForm> {
@@ -96,8 +95,8 @@ class TodoFormState extends State<TodoForm> {
                       id: todo.id,
                       title: todo.title,
                       body: this._data.body,
-                      createdAt: todo.createdAt,
-                      isDone: todo.isDone));
+                      createdAt: todo.createdAt
+                    ));
                   Navigator.pop(context);
                 }
               },

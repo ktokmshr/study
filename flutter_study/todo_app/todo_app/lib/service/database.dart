@@ -6,10 +6,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseService {
-  static final _databaseVersion = 3;
+  static final _databaseVersion = 1;
   static final _databaseName = 'todo_app.db';
 
-  static final todoItemTableName = 't_todo_item';
+  static final todoItemTableName = 't_todo_items';
   static final DatabaseService dbProvider = DatabaseService();
 
   Database _database;
@@ -41,7 +41,6 @@ class DatabaseService {
         body TEXT NOT NULL,
         createdAt TEXT NOT NULL,
         updatedAt TEXT NOT NULL,
-        isDone TEXT NOT NULL
       );
     ''');
   }

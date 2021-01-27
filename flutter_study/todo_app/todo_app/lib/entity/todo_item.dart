@@ -4,9 +4,8 @@ class TodoItem {
   String body;
   DateTime createdAt;
   DateTime updatedAt;
-  bool isDone;
 
-  TodoItem({this.id, this.title, this.body, this.createdAt, this.updatedAt, this.isDone});
+  TodoItem({this.id, this.title, this.body, this.createdAt, this.updatedAt});
   
   factory TodoItem.fromMap(Map<String, dynamic> data) => TodoItem(
         id: data['id'],
@@ -14,7 +13,6 @@ class TodoItem {
         body: data['body'],
         createdAt: DateTime.parse(data['createdAt']).toLocal(),
         updatedAt: DateTime.parse(data['updatedAt']).toLocal(),
-        isDone: (data['isDone'] == '1') ? true : false,
       );
 
   Map<String, dynamic> toMap() {
@@ -24,7 +22,6 @@ class TodoItem {
         'body': this.body,
         'createdAt': this.createdAt.toUtc().toIso8601String(),
         'updatedAt': this.updatedAt.toUtc().toIso8601String(),
-        'isDone': (this.isDone) ? 1 : 0,
     };
   }
 }

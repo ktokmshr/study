@@ -82,8 +82,8 @@ class TodoFormState extends State<TodoForm> {
                   this._formKey.currentState.save();
                   todoItemModel.add(TodoItem(
                       title: this._data.title,
-                      body: this._data.body,
-                      isDone: this._data.isDone));
+                      body: this._data.body
+                    ));
                   Navigator.pop(context);
                 }
               },
