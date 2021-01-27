@@ -23,7 +23,6 @@ class DatabaseService {
   createDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
-    // print(path);
 
     var database = await openDatabase(
       path,
@@ -40,7 +39,7 @@ class DatabaseService {
         title TEXT NOT NULL,
         body TEXT NOT NULL,
         createdAt TEXT NOT NULL,
-        updatedAt TEXT NOT NULL,
+        updatedAt TEXT NOT NULL
       );
     ''');
   }
