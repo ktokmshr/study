@@ -37,8 +37,8 @@ class MainPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => TodoAddition()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => TodoAddition()));
           },
         ));
   }
@@ -61,13 +61,18 @@ class MainPage extends StatelessWidget {
                             child: const Text('詳細'),
                             onPressed: () {
                               Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => TodoDetail(id: todo.id.toString())));
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          TodoDetail(id: todo.id)));
                             },
                           ),
                           const SizedBox(width: 8),
                           TextButton(
                             child: const Text('削除'),
-                            onPressed: () {/* ... */},
+                            onPressed: () {
+                              model.deleteById(todo.id);
+                            },
                           ),
                           const SizedBox(width: 8),
                         ],

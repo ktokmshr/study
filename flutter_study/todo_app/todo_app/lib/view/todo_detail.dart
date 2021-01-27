@@ -4,7 +4,7 @@ import 'package:todo_app/entity/todo_item.dart';
 import 'package:provider/provider.dart';
 
 class TodoDetail extends StatelessWidget {
-  final String id;
+  final int id;
   TodoDetail({Key key, this.id}) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class TodoDetail extends StatelessWidget {
 }
 
 class TodoForm extends StatefulWidget {
-  final String id;
+  final int id;
   TodoForm({this.id});
 
   @override
@@ -39,7 +39,7 @@ class _TodoData {
 }
 
 class TodoFormState extends State<TodoForm> {
-  final String id;
+  final int id;
   TodoFormState({this.id});
   final _formKey = GlobalKey<FormState>();
   final todoItemModel = TodoItemModel();

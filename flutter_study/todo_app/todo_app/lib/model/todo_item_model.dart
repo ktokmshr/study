@@ -17,8 +17,8 @@ class TodoItemModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  TodoItem getTodoById(String id) {
-    return this._allItemList.firstWhere((todo) => todo.id.toString() == id);
+  TodoItem getTodoById(int id) {
+    return this._allItemList.firstWhere((todo) => todo.id.toString() == id.toString());
   }
 
   void add(TodoItem todoItem) async {
@@ -31,8 +31,8 @@ class TodoItemModel extends ChangeNotifier {
     this.fetchAll();
   }
 
-  void deleteById(TodoItem todoItem) async {
-    await repo.deleteItemById(todoItem.id);
+  void deleteById(int id) async {
+    await repo.deleteItemById(id);
     this.fetchAll();
   }
 
